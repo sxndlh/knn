@@ -1,0 +1,28 @@
+Clustering by fast search and find of density peaks
+
+knn
+
+function [idx] =KNN( trainData,trainClass,testData,K )
+ 
+[N,M]=size(trainData); %测试集的维数
+
+dist=zeros(N,1); %计算测试点与未知点的欧式距离
+for i=1:N
+    dist(i,:)=norm(trainData(i,:)-testData); %返回向量的2范数，欧式距离
+end
+%将dist从小到大进行排序
+[Y,I]=sort(dist,1);  % Y代表距离，I代表原顺序下标
+
+K=min(K,length(Y));
+%将训练数据对应的类别与训练数据排序结果对应
+labels=trainClass(I);
+
+idx=mode(labels(1:K)); %mode函数求出众数
+fprintf('该测试数据属于类 %d  ',idx);
+ 
+end
+-----------------------------------------
+ trainData=[3 104;2 100;1 81;101 10;99 5;98 2]
+ trainClass=[1 1 1 2 2 2]
+ testData=[18 90]
+ K=3
