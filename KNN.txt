@@ -1,24 +1,24 @@
-Clustering by fast search and find of density peaks
+Clustering by fast search and find of density peaksï¼ˆK-meansèšç±»ï¼‰
 
-knn
+knn(åˆ†ç±»)
 
 function [idx] =KNN( trainData,trainClass,testData,K )
  
-[N,M]=size(trainData); %²âÊÔ¼¯µÄÎ¬Êı
+[N,M]=size(trainData); %æµ‹è¯•é›†çš„ç»´æ•°
 
-dist=zeros(N,1); %¼ÆËã²âÊÔµãÓëÎ´ÖªµãµÄÅ·Ê½¾àÀë
+dist=zeros(N,1); %è®¡ç®—æµ‹è¯•ç‚¹ä¸æœªçŸ¥ç‚¹çš„æ¬§å¼è·ç¦»
 for i=1:N
-    dist(i,:)=norm(trainData(i,:)-testData); %·µ»ØÏòÁ¿µÄ2·¶Êı£¬Å·Ê½¾àÀë
+    dist(i,:)=norm(trainData(i,:)-testData); %è¿”å›å‘é‡çš„2èŒƒæ•°ï¼Œæ¬§å¼è·ç¦»
 end
-%½«dist´ÓĞ¡µ½´ó½øĞĞÅÅĞò
-[Y,I]=sort(dist,1);  % Y´ú±í¾àÀë£¬I´ú±íÔ­Ë³ĞòÏÂ±ê
+%å°†distä»å°åˆ°å¤§è¿›è¡Œæ’åº
+[Y,I]=sort(dist,1);  % Yä»£è¡¨è·ç¦»ï¼ŒIä»£è¡¨åŸé¡ºåºä¸‹æ ‡
 
 K=min(K,length(Y));
-%½«ÑµÁ·Êı¾İ¶ÔÓ¦µÄÀà±ğÓëÑµÁ·Êı¾İÅÅĞò½á¹û¶ÔÓ¦
+%å°†è®­ç»ƒæ•°æ®å¯¹åº”çš„ç±»åˆ«ä¸è®­ç»ƒæ•°æ®æ’åºç»“æœå¯¹åº”
 labels=trainClass(I);
 
-idx=mode(labels(1:K)); %modeº¯ÊıÇó³öÖÚÊı
-fprintf('¸Ã²âÊÔÊı¾İÊôÓÚÀà %d  ',idx);
+idx=mode(labels(1:K)); %modeå‡½æ•°æ±‚å‡ºä¼—æ•°
+fprintf('è¯¥æµ‹è¯•æ•°æ®å±äºç±» %d  ',idx);
  
 end
 -----------------------------------------
